@@ -1,0 +1,113 @@
+body
+{
+    /*text-align: center;
+    padding: 10px;*/
+    font-family: Arial, Verdana, Geneva, Helvetica, sans-serif;
+    color: #302783;
+    background-color: #FFFFF0;
+    margin: 10px 0 0 0;
+}
+
+/*hr {
+	border: none;
+	border-bottom: 1px dashed #1973AA;
+}*/
+
+/*
+#wrappe r {
+	position: relative;
+	width: 940px;
+	height: auto;
+	margin: 0 auto;
+    */
+/*border: 1px solid black;*//*
+
+}
+*/
+
+#header, #footer {
+/*    position:relative;
+    float:left;
+    width:100%;*/
+    overflow: hidden;
+}
+
+#header { height: 45px; }
+#footer { height: 80px; }
+
+#h-left {
+    background: url("img/logo.png") no-repeat;
+}
+
+#h-right {
+    background: url("img/csjl.png") no-repeat 100% 0;
+}
+
+#h-left, #h-right {height: 46px;}
+
+#h-left, #f-left {text-align: left;}
+#h-right, #f-right {text-align: right;}
+/*#h-left, #h-right, #f-left, #f-right {
+	position: relative;
+	float: left;
+	width: 50%;
+}*/
+
+#tit-vivabem {
+    font-size: 56px;
+    font-style: italic;
+    font-weight: bold;
+    line-height: 48px;
+    margin: 0 0 0 95px;
+}
+
+#slogan h1 {
+    margin: 10px 0 0 0;
+}
+
+#tit-csjl {
+    position: relative;
+    float: right;
+    text-align: center;
+    top: 5px;
+    right: 80px;
+}
+
+#tit-csjl_01 {
+    font-size: 12px;
+}
+
+#tit-csjl_02 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.line {
+/*    position: relative;
+    float: left;*/
+    background: url("img/line.png") no-repeat 0 50%;
+/*    width: 100%;*/
+    height: 10px;
+}
+
+#content {
+/*
+    position: relative;
+    float: left;
+    width: 100%;
+*/
+    height: 560px;
+    background: #EFEFEF;
+}
+
+.logo-cegen {
+    background: url("img/logocegen.png") no-repeat 99% 0;
+    height: 100%;
+}
+
+.logo-cegen p {
+    font-size: 10px;
+    text-align: center;
+    margin: 2px 0 0 0;
+}
+
