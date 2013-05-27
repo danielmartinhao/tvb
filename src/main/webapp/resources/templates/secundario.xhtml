@@ -17,43 +17,54 @@
 	<h:outputStylesheet library="css" name="960_12_col.css"></h:outputStylesheet>
 
 	<!-- 	<link rel="stylesheet" type="text/css" href="../css/default.css" /> -->
-	<h:outputStylesheet library="css" name="default.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="default_teste.css"></h:outputStylesheet>
 
 	<!-- 	<script type="text/javascript" src="../js/jquery-1.9.1.min.js" language="javascript" charset="utf-8"></script> -->
 	<h:outputScript library="js" name="jquery-1.9.1.min.js"></h:outputScript>
+	<h:outputScript  >
+		jQuery.noConflict();
+	   	// Add the $() function
+    	// $ = jQuery;
+    	// Now you can use it
+    	$(document).ready(function() {
+        	console.log("tete");
+    	});
+	</h:outputScript>
 </h:head>
 
 <h:body>
 	<div id="wrapper" class="container_12">
-        <div id="header">
-            <div id="h-left" class="grid_5">
-                <p id="tit-vivabem">VIVA BEM</p>
-            </div>
-            <div id="slogan" class="grid_4"><h1>O seu plano de saúde!</h1></div>
-            <div id="h-right" class="grid_3">
-                <div id="tit-csjl">
-                    <p id="tit-csjl_01">Casa de Saúde</p>
-                    <p id="tit-csjl_02">Dr. João Lima</p>
-                </div>
-            </div>
-        </div>
-        <div class="line grid_12"></div>
+		<div id="header">
+			<div id="h-left" class="grid_5">
+				<p id="tit-vivabem">Teste</p>
+			</div>
+			<div id="slogan" class="grid_4">
+				<h1>Teste Daniel A. Martinhao</h1>
+			</div>
+			<div id="h-right" class="grid_3">
+				<div id="tit-csjl">
+					<p id="tit-csjl_01">Teste Teste</p>
+					<p id="tit-csjl_02">Daniel A.</p>
+				</div>
+			</div>
+		</div>
+		<div class="line grid_12"></div>
 
-        <div id="content" class="grid_12">
-        	<ui:insert name="content">Hello World!!</ui:insert>
-        </div>
+		<div id="content" class="grid_12">
+			<ui:insert name="content">Hello World!!</ui:insert>
+		</div>
 
-        <div class="line grid_12"></div>
-        <div class="clear"></div>
+		<div class="line grid_12"></div>
+		<div class="clear"></div>
 
-        <div id="footer" >
-            <div class="logo-cegen prefix_8 grid_4">
-                <div class="grid_3 suffix_1 alpha omega">
-                    <p>Centro de Excelência à Atenção</p>
-                    <p>Geriátrica e Gerontológica</p>
-                </div>
-            </div>
-        </div>
-    </div>
+		<div id="footer">
+			<div class="logo-cegen prefix_8 grid_4">
+				<div class="grid_3 suffix_1 alpha omega">
+					<p>Teste Teste Teste</p>
+					<p>Teste Teste Teste</p>
+				</div>
+			</div>
+		</div>
+	</div>
 </h:body>
 </html>
