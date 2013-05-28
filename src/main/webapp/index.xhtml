@@ -8,37 +8,20 @@
 <!-- <ui:composition template="/resources/templates/principal.xhtml"> -->
 <ui:composition template="/resources/templates/secundario.xhtml">
 	<ui:define name="content">
-		<p:dialog header="Login" widgetVar="loginDlg" modal="TRUE">
-			<h:form>
-				<p>
-					<p:outputLabel>Login:</p:outputLabel>
-					<p:inputText></p:inputText>
-				</p>
-				<p>
-					<p:outputLabel>Senha:</p:outputLabel>
-					<p:password></p:password>
-				</p>
-			</h:form>
-		</p:dialog>
+		<p:panelGrid columns="2">
+			<f:facet name="header">Login</f:facet>
 
-		<h:form>
-			<p:panelGrid columns="2">
-				<f:facet name="header">Login</f:facet>
+			<h:outputLabel for="login" value="Login: *" />
+			<p:inputText id="login" value="" required="true" label="Login" />
 
-				<h:outputLabel for="login" value="Login: *" />
-				<p:inputText id="login" value="" required="true" label="Login" />
+			<h:outputLabel for="senha" value="Senha: *" />
+			<p:inputText id="senha" value="" required="true" label="Senha" />
 
-				<h:outputLabel for="senha" value="Senha: *" />
-				<p:inputText id="senha" value="" required="true" label="Senha" />
-
-				<f:facet name="footer">
-					<p:commandButton type="button" value="Login" icon="ui-icon-check" style="margin:0" />
-				</f:facet>
-			</p:panelGrid>
-
-		</h:form>
-		<p:commandButton type="button" value="Login"
-			onclick="loginDlg.show();" />
+			<f:facet name="footer">
+				<p:commandButton type="button" value="Login" icon="ui-icon-check"
+					style="margin:0" />
+			</f:facet>
+		</p:panelGrid>
 	</ui:define>
 </ui:composition>
 
