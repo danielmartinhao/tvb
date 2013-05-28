@@ -8,20 +8,22 @@
 <!-- <ui:composition template="/resources/templates/principal.xhtml"> -->
 <ui:composition template="/resources/templates/secundario.xhtml">
 	<ui:define name="content">
-		<p:panelGrid columns="2">
-			<f:facet name="header">Login</f:facet>
+		<div id="login" class="push_4 grid_4">
+			<p:panelGrid columns="2">
+				<f:facet name="header">Login</f:facet>
 
-			<h:outputLabel for="login" value="Login: *" />
-			<p:inputText id="login" value="" required="true" label="Login" />
+				<h:outputLabel for="login" value="Login: *" />
+				<p:inputText id="login" value="" required="true" label="Login" />
 
-			<h:outputLabel for="senha" value="Senha: *" />
-			<p:inputText id="senha" value="" required="true" label="Senha" />
+				<h:outputLabel for="senha" value="Senha: *" />
+				<p:password id="senha" value="" required="true" label="Senha" />
 
-			<f:facet name="footer">
-				<p:commandButton type="button" value="Login" icon="ui-icon-check"
-					style="margin:0" />
-			</f:facet>
-		</p:panelGrid>
+				<f:facet name="footer">
+					<p:commandButton type="button" value="Login" icon="ui-icon-check"
+						style="margin:0" />
+				</f:facet>
+			</p:panelGrid>
+		</div>
 	</ui:define>
 </ui:composition>
 
