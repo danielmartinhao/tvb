@@ -111,11 +111,11 @@ body
     margin: 2px 0 0 0;
 }
 
-#login {
+#login-box {
 	top: 150px;
 }
 
-#login table {
+#login-box table {
 	position: relative;
 	margin: 0 auto;
 }

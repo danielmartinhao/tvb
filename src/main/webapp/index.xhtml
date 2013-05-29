@@ -5,24 +5,23 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-<!-- <ui:composition template="/resources/templates/principal.xhtml"> -->
-<ui:composition template="/resources/templates/secundario.xhtml">
+<ui:composition template="/resources/templates/principal.xhtml">
+	<!-- <ui:composition template="/resources/templates/secundario.xhtml"> -->
 	<ui:define name="content">
-		<div id="login" class="push_4 grid_4">
-			<p:panelGrid columns="2">
-				<f:facet name="header">Login</f:facet>
-
-				<h:outputLabel for="login" value="Login: *" />
-				<p:inputText id="login" value="" required="true" label="Login" />
-
-				<h:outputLabel for="senha" value="Senha: *" />
-				<p:password id="senha" value="" required="true" label="Senha" />
-
-				<f:facet name="footer">
-					<p:commandButton type="button" value="Login" icon="ui-icon-check"
-						style="margin:0" />
-				</f:facet>
-			</p:panelGrid>
+		<div id="login-box" class="push_4 grid_4">
+			<h:form>
+				<p:growl id="growl" showDetail="true" sticky="true" />
+				<p:panelGrid columns="2">
+					<h:outputLabel for="login" value="Login: *" />
+					<p:inputText id="login" value="#{growlLoginBean.login}" required="true" label="Login" />
+					<h:outputLabel for="senha" value="Senha: *" />
+					<p:password id="senha" value="#{growlLoginBean.senha}" required="true" label="Senha" />
+					<f:facet name="footer">
+						<p:commandButton type="button" value="Login" icon="ui-icon-check"
+							style="margin:0" actionListener="#{growlLoginBean.executarLogin}" update="growl" />
+					</f:facet>
+				</p:panelGrid>
+			</h:form>
 		</div>
 	</ui:define>
 </ui:composition>
