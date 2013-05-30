@@ -10,7 +10,7 @@
 	<ui:define name="content">
 		<div id="login-box" class="push_4 grid_4">
 			<h:form>
-				<p:growl id="growl" showDetail="true" sticky="true" />
+				<p:growl for="generalMessages" id="growl" showDetail="true" sticky="true" />
 				<p:panelGrid columns="2" >
 					<h:outputLabel for="login" value="Login: *" />
 					<p:inputText id="login" value="#{loginBean.login}" required="true" label="Login" />
@@ -19,10 +19,11 @@
 					<f:facet name="footer">
 						<p:commandButton value="Login"
 							icon="ui-icon-check" style="margin:0"
-							actionListener="#{loginBean.executarLogin}" update="growl" />
+							actionListener="#{loginBean.executarLogin}" update="growl failed" />
 					</f:facet>
 				</p:panelGrid>
-<!-- 				<p:captcha label="Captcha" requiredMessage="Digite as duas palavras." validatorMessage="O valor digitado está incorreto." /> -->
+				<p:captcha label="Captcha" requiredMessage="Digite as duas palavras." validatorMessage="O valor digitado está incorreto." />
+				<p:messages id="failed" ></p:messages>
 			</h:form>
 		</div>
 	</ui:define>
