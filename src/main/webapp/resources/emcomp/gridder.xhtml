@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:composite="http://java.sun.com/jsf/composite" >
+      
+<h:head>
+	<title>titulo</title>
+	<composite:interface>
+		<composite:attribute name="library" default="js"></composite:attribute>
+		<composite:attribute name="name" default="960.gridder.js"></composite:attribute>
+	</composite:interface>
+	<composite:implementation>
+		<h:outputScript library="#{cc.attrs.library}" name="#{cc.attrs.name}"></h:outputScript>
+	</composite:implementation>
+</h:head>
+<body></body>
+</html>

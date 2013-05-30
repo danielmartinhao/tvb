@@ -1,7 +1,5 @@
 package beans;
 
-import java.io.Serializable;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -10,7 +8,7 @@ import javax.faces.event.ActionEvent;
 
 @ManagedBean
 @ViewScoped
-public class LoginBean implements Serializable {
+public class LoginBean {
 
 	private String login;
 	private String senha;
@@ -37,10 +35,8 @@ public class LoginBean implements Serializable {
 	public void executarLogin(ActionEvent actionEvent) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		
-		context.addMessage(null, new FacesMessage("Login executado!!!", "Bem-vindo " + this.login));
-		context.addMessage(null, new FacesMessage("Teste", "Teste"));
-		
-		System.out.println("teste");
+		context.addMessage("generalMessages", new FacesMessage("Login executado!!!", "Bem-vindo " + this.login));
+		context.addMessage("generalMessages", new FacesMessage("Teste", "Teste"));
 		
 	}
 

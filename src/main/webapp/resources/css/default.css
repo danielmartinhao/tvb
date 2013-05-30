@@ -111,11 +111,9 @@ body
     margin: 2px 0 0 0;
 }
 
-#login-box {
-	top: 150px;
-}
 
-#login-box table {
+#login-box #form-fields table {
 	position: relative;
-	margin: 0 auto;
+	margin: 10px auto;
+	
 }
