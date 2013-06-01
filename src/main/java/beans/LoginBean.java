@@ -1,17 +1,29 @@
 package beans;
 
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.inject.Inject;
+import javax.inject.Named;
 
-@ManagedBean
-@ViewScoped
+import dao.IUsuarioDAO;
+import entities.Usuario;
+
+@Named
+@RequestScoped
 public class LoginBean {
 
+	@Inject
+	IUsuarioDAO usuarioDao;
+
+	@Inject 
+	FacesContext context;
+	
 	private String login;
 	private String senha;
+	
 	
 	public LoginBean() {
 	}
@@ -33,11 +45,13 @@ public class LoginBean {
 	}
 
 	public void executarLogin(ActionEvent actionEvent) {
-		FacesContext context = FacesContext.getCurrentInstance();
+//		FacesContext context = FacesContext.getCurrentInstance();
+		Usuario usuario = usuarioDao.getForLogin(this.login);
 		
-		context.addMessage("generalMessages", new FacesMessage("Login executado!!!", "Bem-vindo " + this.login));
-		context.addMessage("generalMessages", new FacesMessage("Teste", "Teste"));
-		
+		if (usuario != null) {
+			context.addMessage("generalMessages", new FacesMessage("Login executado!!!", "Bem-vindo " + usuario.getUsunome()));
+		} else {
+			context.addMessage("failed", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha de login.", "Usuário Inválido."));
+		}
 	}
-
 }

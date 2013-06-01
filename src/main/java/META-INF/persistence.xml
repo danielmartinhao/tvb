@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="tvb">
+		<description>Hibernate 4 persistence Unit. (By Daniel A. Martinhao)</description>
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>java:jboss/datasources/PostgresqlVivabem</jta-data-source>
+		<class>entities.Grupo</class>
+		<class>entities.Permissao</class>
+		<class>entities.Usuario</class>
+		<properties>
+<!-- 			<property name="hibernate.connection.username" value="postgres" /> -->
+<!-- 			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/vivabem" /> -->
+<!-- 			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver" /> -->
+			<property name="hibernate.show_sql" value="true" />
+			<!-- <property name="hibernate.hbm2ddl.auto" value="create-drop" /> -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL82Dialect" />
+		</properties>
+	</persistence-unit>
+</persistence>
