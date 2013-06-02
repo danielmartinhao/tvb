@@ -2,11 +2,12 @@ package beans;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.transaction.UserTransaction;
 
 import dao.IUsuarioDAO;
 import entities.Usuario;
@@ -15,6 +16,12 @@ import entities.Usuario;
 @RequestScoped
 public class LoginBean {
 
+	@Inject
+	EntityManager em;
+	
+	@Inject
+	UserTransaction ut;
+	
 	@Inject
 	IUsuarioDAO usuarioDao;
 
@@ -47,8 +54,16 @@ public class LoginBean {
 	public void executarLogin(ActionEvent actionEvent) {
 //		FacesContext context = FacesContext.getCurrentInstance();
 		Usuario usuario = usuarioDao.getForLogin(this.login);
-		
 		if (usuario != null) {
+			try {
+//				ut.begin();
+				System.out.println(usuario.getPermissaos().toString());
+				System.out.println("teste");
+//				ut.commit();
+			} catch (Exception e){
+				context.addMessage("failed", new FacesMessage(e.getMessage()));
+				e.printStackTrace();
+			}
 			context.addMessage("generalMessages", new FacesMessage("Login executado!!!", "Bem-vindo " + usuario.getUsunome()));
 		} else {
 			context.addMessage("failed", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha de login.", "Usuário Inválido."));
