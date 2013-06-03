@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/resources/templates/principal.xhtml">
-<!-- <ui:composition template="/resources/templates/secundario.xhtml"> -->
+	<!-- <ui:composition template="/resources/templates/secundario.xhtml"> -->
 	<ui:define name="content">
 		<div id="login-box" class="alpha prefix_3 grid_6 suffix_3 omega">
 			<h:form>
@@ -15,9 +15,11 @@
 						sticky="true" />
 					<p:panelGrid columns="2">
 						<h:outputLabel for="login" value="Login: *" />
-						<p:inputText id="login" value="#{loginBean.login}" required="true" requiredMessage="Login: Campo Obrigatório." label="Login" />
+						<p:inputText id="login" value="#{loginBean.login}" required="true"
+							requiredMessage="Login: Campo Obrigatório." label="Login" />
 						<h:outputLabel for="senha" value="Senha: *" />
-						<p:password id="senha" value="#{loginBean.senha}" required="true" requiredMessage="Senha: Campo Obrigatório." label="Senha" />
+						<p:password id="senha" value="#{loginBean.senha}" required="true"
+							requiredMessage="Senha: Campo Obrigatório." label="Senha" />
 						<f:facet name="footer">
 							<p:commandButton value="Login" icon="ui-icon-check"
 								style="margin:0" actionListener="#{loginBean.executarLogin}"
@@ -25,13 +27,14 @@
 						</f:facet>
 					</p:panelGrid>
 				</div>
-				<div id="captcha-box" class="alpha prefix_1 grid_4 suffix_1 omega">
-<!-- 					<p:captcha theme="white" label="Captcha" -->
-<!-- 						requiredMessage="Captcha: Digite as duas palavras." -->
-<!-- 						validatorMessage="Captcha: O valor digitado está incorreto." /> -->
+				<div id="captcha-box" class="alpha grid_6 omega">
+						<p:captcha theme="clean" label="Captcha" language="pt"
+							requiredMessage="Captcha: Digite as duas palavras."
+							validatorMessage="Captcha: O valor digitado está incorreto." />
 				</div>
 				<div class="alpha grid_6 omega">
-					<p:messages id="failed" severity="warn, error, fatal" closable="true" ></p:messages>
+					<p:messages id="failed" severity="warn, error, fatal"
+						closable="true"></p:messages>
 				</div>
 			</h:form>
 		</div>

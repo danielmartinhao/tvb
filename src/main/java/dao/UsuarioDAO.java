@@ -27,7 +27,6 @@ public class UsuarioDAO implements IUsuarioDAO {
 				Query query = em.createQuery("SELECT u FROM Usuario u WHERE u.usulogin = :usulogin");
 				query.setParameter("usulogin", usulogin);
 				usuario = (Usuario) query.getSingleResult();
-//				System.out.println(usuario.getPermissaos().toString());
 			} catch (NoResultException e){
 				usuario= null;
 			}

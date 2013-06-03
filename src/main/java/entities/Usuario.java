@@ -29,7 +29,7 @@ public class Usuario implements Serializable {
 	private Grupo grupo;
 
 	//bi-directional many-to-many association to Permissao
-	@ManyToMany(mappedBy="usuarios")
+	@ManyToMany(mappedBy="usuarios", fetch=FetchType.EAGER)
 	private List<Permissao> permissaos;
 
 	public Usuario() {

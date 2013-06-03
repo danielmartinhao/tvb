@@ -6,22 +6,15 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.transaction.UserTransaction;
 
 import dao.IUsuarioDAO;
+import entities.Permissao;
 import entities.Usuario;
 
 @Named
 @RequestScoped
 public class LoginBean {
 
-	@Inject
-	EntityManager em;
-	
-	@Inject
-	UserTransaction ut;
-	
 	@Inject
 	IUsuarioDAO usuarioDao;
 
@@ -52,18 +45,12 @@ public class LoginBean {
 	}
 
 	public void executarLogin(ActionEvent actionEvent) {
-//		FacesContext context = FacesContext.getCurrentInstance();
 		Usuario usuario = usuarioDao.getForLogin(this.login);
 		if (usuario != null) {
-			try {
-//				ut.begin();
-				System.out.println(usuario.getPermissaos().toString());
-				System.out.println("teste");
-//				ut.commit();
-			} catch (Exception e){
-				context.addMessage("failed", new FacesMessage(e.getMessage()));
-				e.printStackTrace();
-			}
+//			for (Permissao p: usuario.getPermissaos()){
+//				System.out.println(p.getPerdesc());
+//			}
+//			System.out.println(usuario.getGrupo().getGrudesc());
 			context.addMessage("generalMessages", new FacesMessage("Login executado!!!", "Bem-vindo " + usuario.getUsunome()));
 		} else {
 			context.addMessage("failed", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha de login.", "Usuário Inválido."));
