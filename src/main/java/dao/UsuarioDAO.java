@@ -7,6 +7,7 @@ import javax.persistence.Query;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
+import entities.Permissao;
 import entities.Usuario;
 
 
@@ -27,6 +28,9 @@ public class UsuarioDAO implements IUsuarioDAO {
 				Query query = em.createQuery("SELECT u FROM Usuario u WHERE u.usulogin = :usulogin");
 				query.setParameter("usulogin", usulogin);
 				usuario = (Usuario) query.getSingleResult();
+//				for (Permissao p: usuario.getPermissaos()) {
+//					System.out.println(p.getPerdesc());
+//				}
 			} catch (NoResultException e){
 				usuario= null;
 			}

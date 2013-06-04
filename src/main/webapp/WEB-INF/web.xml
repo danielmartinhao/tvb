@@ -13,7 +13,7 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>/faces/*</url-pattern>
 	</servlet-mapping>
-	
+
 	<context-param>
 		<param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
 		<param-value>6LfLFOISAAAAAFU0-iLBYonWPs0OtI5x8-LAp9r3</param-value>
@@ -22,4 +22,31 @@
 		<param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
 		<param-value>6LfLFOISAAAAAJFEqsgla6z4lqLCyXxAWD___3tR</param-value>
 	</context-param>
+
+	<security-constraint>
+		<display-name>Constraint1</display-name>
+		<web-resource-collection>
+			<web-resource-name>faces</web-resource-name>
+			<url-pattern>/faces/*</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<description />
+			<role-name>MANAGER</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<form-login-config>
+			<form-login-page>/login.xhtml</form-login-page>
+			<form-error-page>/error.xhtml</form-error-page>
+		</form-login-config>
+	</login-config>
+
+	<security-role>
+		<description />
+		<role-name>MANAGER</role-name>
+	</security-role>
 </web-app>
