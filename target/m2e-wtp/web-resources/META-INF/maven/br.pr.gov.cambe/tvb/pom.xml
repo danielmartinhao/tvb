@@ -56,6 +56,9 @@
 		<!-- maven-compiler-plugin -->
 		<maven.compiler.target>1.6</maven.compiler.target>
 		<maven.compiler.source>1.6</maven.compiler.source>
+
+		<!-- Picketbox version -->
+		<picketbox.version>5.0.0-2013Jan24</picketbox.version>
 	</properties>
 
 	<repositories>
@@ -218,10 +221,24 @@
 			<groupId>org.jboss.spec.javax.transaction</groupId>
 			<artifactId>jboss-transaction-api_1.1_spec</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>org.picketbox</groupId>
+			<artifactId>picketbox-core</artifactId>
+			<version>${picketbox.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.picketbox</groupId>
+			<artifactId>picketbox-http</artifactId>
+			<version>${picketbox.version}</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>

@@ -4,6 +4,9 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
 	<display-name>tvb</display-name>
+	<welcome-file-list>
+		<welcome-file>/faces/sistema/index.xhtml</welcome-file>
+	</welcome-file-list>
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -24,29 +27,54 @@
 	</context-param>
 
 	<security-constraint>
-		<display-name>Constraint1</display-name>
+		<display-name>Sistema</display-name>
 		<web-resource-collection>
-			<web-resource-name>faces</web-resource-name>
-			<url-pattern>/faces/*</url-pattern>
+			<web-resource-name>sistema_resources</web-resource-name>
+			<url-pattern>/faces/sistema/*</url-pattern>
 			<http-method>GET</http-method>
 			<http-method>POST</http-method>
 		</web-resource-collection>
 		<auth-constraint>
-			<description />
-			<role-name>MANAGER</role-name>
+			<description>Para todos</description>
+			<role-name>sistema</role-name>
+			<role-name>atendente</role-name>
+			<role-name>administracao</role-name>
+			<role-name>vendedor</role-name>
 		</auth-constraint>
 	</security-constraint>
+
+<!-- No Auth Constraint -->
+<!-- 	<security-constraint> -->
+<!-- 		<display-name>Allowed resources</display-name> -->
+<!-- 		<web-resource-collection> -->
+<!-- 			<web-resource-name>Allowed resources</web-resource-name> -->
+<!-- 			<url-pattern>/faces/javax.faces.resource/*</url-pattern> -->
+<!-- 		</web-resource-collection> -->
+<!-- 	</security-constraint> -->
 
 	<login-config>
 		<auth-method>FORM</auth-method>
 		<form-login-config>
-			<form-login-page>/login.xhtml</form-login-page>
-			<form-error-page>/error.xhtml</form-error-page>
+			<form-login-page>/faces/login.xhtml</form-login-page>
+<!-- 			<form-login-page>/faces/index_inicial.html</form-login-page> -->
+			<form-error-page>/faces/error.xhtml</form-error-page>
 		</form-login-config>
 	</login-config>
 
 	<security-role>
-		<description />
-		<role-name>MANAGER</role-name>
+		<description>Administracao</description>
+		<role-name>administracao</role-name>
+	</security-role>
+	<security-role>
+		<description>Usuarios de Sistema</description>
+		<role-name>sistema</role-name>
+	</security-role>
+	<security-role>
+		<description>Operacional Vendedor</description>
+		<role-name>vendedor</role-name>
+	</security-role>
+	<security-role>
+		<description>Operacional Atendente</description>
+		<role-name>atendente</role-name>
 	</security-role>
 </web-app>

@@ -9,7 +9,7 @@
 <ui:composition template="/resources/templates/secundario.xhtml">
 	<ui:define name="content">
 		<div id="login-box" class="alpha prefix_3 grid_6 suffix_3 omega">
-			<form action="j_security_check" method="POST" >
+			<form action="j_security_check" method="post" >
 				<div id="form-fields">
 					<p:growl for="generalMessages" id="growl" showDetail="true"
 						sticky="true" />
@@ -21,10 +21,9 @@
 						<p:password id="j_password" value="#{loginBean.senha}" required="true"
 							requiredMessage="Senha: Campo Obrigatório." label="Senha" />
 						<f:facet name="footer">
-							<p:commandButton value="#{msg['login.button']}"
-								icon="ui-icon-check" style="margin:0"
-								actionListener="#{loginBean.executarLogin}"
-								update="growl failed" />
+							<h:commandButton value="#{msg['login.button']}" id="teste-de-botao"
+								styleClass="ui-icon-check" style="margin:0" 
+								 />
 						</f:facet>
 					</p:panelGrid>
 				</div>
