@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	version="2.5">
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	<display-name>tvb</display-name>
+	<context-param>
+		<param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
+		<param-value>6LfLFOISAAAAAFU0-iLBYonWPs0OtI5x8-LAp9r3</param-value>
+	</context-param>
+	<context-param>
+		<param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
+		<param-value>6LfLFOISAAAAAJFEqsgla6z4lqLCyXxAWD___3tR</param-value>
+	</context-param>
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -13,13 +20,57 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>/faces/*</url-pattern>
 	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>/index.xhtml</welcome-file>
+	</welcome-file-list>
 	
-	<context-param>
-		<param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
-		<param-value>6LfLFOISAAAAAFU0-iLBYonWPs0OtI5x8-LAp9r3</param-value>
-	</context-param>
-	<context-param>
-		<param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
-		<param-value>6LfLFOISAAAAAJFEqsgla6z4lqLCyXxAWD___3tR</param-value>
-	</context-param>
+	<!-- Resource / Role Mapping -->
+	<security-constraint>
+		<display-name>Geral</display-name>
+		<web-resource-collection>
+			<web-resource-name>Área protegida</web-resource-name>
+			<url-pattern>/*</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+			<http-method>PUT</http-method>
+			<http-method>DELETE</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<description>For admin role only</description>
+			<role-name>sistema</role-name>
+			<role-name>administracao</role-name>
+			<role-name>atendente</role-name>
+			<role-name>vendedor</role-name>
+		</auth-constraint>
+		<user-data-constraint>
+			<transport-guarantee>NONE</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+
+	<!-- Login Prompt -->
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<form-login-config>
+			<form-login-page>/login/login.xhtml</form-login-page>
+			<form-error-page>/error.xhtml</form-error-page>
+		</form-login-config>
+	</login-config>
+
+	<!-- Roles -->
+	<security-role>
+		<description>Sistema</description>
+		<role-name>sistema</role-name>
+	</security-role>
+	<security-role>
+		<description>Administracao</description>
+		<role-name>administracao</role-name>
+	</security-role>
+	<security-role>
+		<description>Operacional Atendente</description>
+		<role-name>atendente</role-name>
+	</security-role>
+	<security-role>
+		<description>Operacional Vendedor</description>
+		<role-name>vendedor</role-name>
+	</security-role>
 </web-app>
