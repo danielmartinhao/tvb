@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jboss-web>
-    <security-domain>java:/jaas/servlet-security-vb</security-domain>
+    <security-domain>java:/jaas/vivabem-proj</security-domain>
 </jboss-web>

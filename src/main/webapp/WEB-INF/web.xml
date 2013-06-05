@@ -56,7 +56,6 @@
 		<auth-method>FORM</auth-method>
 		<form-login-config>
 			<form-login-page>/faces/login.xhtml</form-login-page>
-<!-- 			<form-login-page>/faces/index_inicial.html</form-login-page> -->
 			<form-error-page>/faces/error.xhtml</form-error-page>
 		</form-login-config>
 	</login-config>
