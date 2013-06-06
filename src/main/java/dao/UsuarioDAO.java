@@ -7,7 +7,6 @@ import javax.persistence.Query;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
-import entities.Permissao;
 import entities.Usuario;
 
 
