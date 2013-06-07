@@ -1,6 +1,7 @@
 package beans;
 
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Instance;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -8,7 +9,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import dao.IUsuarioDAO;
-import entities.Permissao;
 import entities.Usuario;
 
 @Named
@@ -20,6 +20,9 @@ public class LoginBean {
 
 	@Inject 
 	FacesContext context;
+	
+	@Inject @MeuUsuarioLogado
+	private Instance<Usuario> usuario;
 	
 	private String login;
 	private String senha;
@@ -56,4 +59,14 @@ public class LoginBean {
 			context.addMessage("failed", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha de login.", "Usuário Inválido."));
 		}
 	}
+	
+	public Usuario getUsuario() {
+		return usuario.get();
+	}
+
+	public void setUsuario(Instance<Usuario> usuario) {
+		this.usuario = usuario;
+	}
+	
+	
 }
