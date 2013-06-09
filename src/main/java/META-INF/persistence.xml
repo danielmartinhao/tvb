@@ -6,9 +6,9 @@
 		<description>Hibernate 4 persistence Unit. (By Daniel A. Martinhao)</description>
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>java:jboss/datasources/PostgresqlVivabem</jta-data-source>
-		<class>entities.Grupo</class>
-		<class>entities.Permissao</class>
-		<class>entities.Usuario</class>
+		<class>br.com.vivabem.entities.Grupo</class>
+		<class>br.com.vivabem.entities.Permissao</class>
+		<class>br.com.vivabem.entities.Usuario</class>
 		
 		<class>org.picketlink.idm.jpa.schema.IdentityObject</class>
         <class>org.picketlink.idm.jpa.schema.IdentityObjectAttribute</class>

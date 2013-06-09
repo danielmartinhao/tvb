@@ -1,6 +1,6 @@
-package dao;
+package br.com.vivabem.dao;
 
-import entities.Usuario;
+import br.com.vivabem.entities.Usuario;
 
 public interface IUsuarioDAO {
  	public Usuario getForLogin(String login);

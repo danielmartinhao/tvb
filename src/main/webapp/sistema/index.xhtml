@@ -14,9 +14,9 @@
 					<h:outputText value="Logado..!!!" />
 				</p>
 				<p>
-					<h:outputText value="#{loginBean.usuarioDoSistema.usulogin}" />
+					<h:outputText value="#{loginBean.usuario.usulogin}" />
 				</p>
-				<h:commandButton value="Proxima Pagina" action="pagina2.xhtml" />
+				<p:commandButton value="Proxima Pagina" action="/sistema2/pagina2.xhtml?faces-redirect=true" ajax="false" />
 			</h:form>
 			
 		</div>

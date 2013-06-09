@@ -1,4 +1,4 @@
-package entities;
+package br.com.vivabem.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;

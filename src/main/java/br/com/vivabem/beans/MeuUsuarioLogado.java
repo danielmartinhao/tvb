@@ -1,4 +1,4 @@
-package beans;
+package br.com.vivabem.beans;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

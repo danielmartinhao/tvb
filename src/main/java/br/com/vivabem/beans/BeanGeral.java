@@ -1,10 +1,11 @@
-package beans;
+package br.com.vivabem.beans;
 
 import javax.enterprise.inject.Instance;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
-import entities.Usuario;
+import br.com.vivabem.entities.Usuario;
+
 
 @ManagedBean
 public class BeanGeral {

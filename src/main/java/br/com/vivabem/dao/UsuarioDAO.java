@@ -1,4 +1,4 @@
-package dao;
+package br.com.vivabem.dao;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -7,7 +7,8 @@ import javax.persistence.Query;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
-import entities.Usuario;
+import br.com.vivabem.entities.Usuario;
+
 
 
 public class UsuarioDAO implements IUsuarioDAO {

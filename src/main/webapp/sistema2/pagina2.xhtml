@@ -14,9 +14,11 @@
 					<h:outputText value="Essa é a Página 2..." />
 				</p>
 				<p>
-					<h:outputText value="#{beanGeral.user.usunome} kdkdkdkdkdk" />
+					<h:outputText value="Usuário logado: #{beanGeral.user.usunome}" />
 				</p>
-				<h:commandButton value="Página Anterior" action="index.xhtml" />
+				<p:commandButton value="Página Anterior..." style="margin:0 5px;" action="/sistema/index.xhtml?faces-redirect=true" ajax="false"/>
+				<p:commandButton value="Logout" style="margin:0 5px;" action="/login.xhtml?faces-redirect=true" actionListener="#{loginBean.executarLogout}" ajax="false" />
+				
 			</h:form>
 			
 		</div>
