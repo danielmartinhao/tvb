@@ -49,6 +49,12 @@
 
 		<!-- Picketbox version -->
 		<picketbox.version>5.0.0-2013Jan24</picketbox.version>
+
+		<!-- Arquillian version -->
+		<version.arquillian>1.0.4.Final</version.arquillian>
+		<version.arquillian.container>1.0.0.CR7</version.arquillian.container>
+		
+
 	</properties>
 
 	<repositories>
@@ -83,6 +89,13 @@
 				<version>${version.jboss.bom}</version>
 				<type>pom</type>
 				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.arquillian</groupId>
+				<artifactId>arquillian-bom</artifactId>
+				<version>${version.arquillian}</version>
+				<scope>import</scope>
+				<type>pom</type>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -228,7 +241,28 @@
 			<artifactId>picketbox-http</artifactId>
 			<version>${picketbox.version}</version>
 		</dependency>
-		
+
+		<!-- Test Dependencies -->
+		<dependency>
+			<groupId>org.jboss.arquillian.container</groupId>
+			<artifactId>arquillian-weld-ee-embedded-1.1</artifactId>
+			<version>${version.arquillian.container}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.weld</groupId>
+			<artifactId>weld-core</artifactId>
+			<version>1.1.5.Final</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.7.5</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- Test Dependencies -->
+
 	</dependencies>
 
 	<build>

@@ -9,8 +9,14 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.UserTransaction;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.picketbox.core.DefaultPicketBoxManager;
 import org.picketbox.core.PicketBoxManager;
 import org.picketbox.core.UserContext;
@@ -27,6 +33,11 @@ import org.picketlink.idm.model.SimpleGroup;
 import org.picketlink.idm.model.SimpleRole;
 import org.picketlink.idm.model.SimpleUser;
 
+import br.com.vivabem.Resources;
+import br.com.vivabem.dao.UsuarioDAO;
+import br.com.vivabem.tests.Calculadora;
+
+@RunWith(Arquillian.class)
 public class UserTest {
 	
 	@Inject
@@ -34,7 +45,17 @@ public class UserTest {
 	
 	@Resource
 	private UserTransaction ut;
-
+	
+	@Deployment
+	public static JavaArchive createDeployment(){
+		return ShrinkWrap.create(JavaArchive.class)
+			.addClass(EntityManager.class)
+			.addClass(UserTransaction.class)	
+			.addClass(Resources.class)
+			.addClass(UsuarioDAO.class)
+			.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+	}
+	
 	@Test
 	public void testUserNamePasswordCredential() throws AuthenticationException {
 		ConfigurationBuilder builder = new ConfigurationBuilder();
