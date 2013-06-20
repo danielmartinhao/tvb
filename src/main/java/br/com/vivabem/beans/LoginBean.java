@@ -8,6 +8,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
+import org.picketlink.Identity;
+import org.picketlink.extensions.core.pbox.LoginCredential;
+import org.picketlink.idm.credential.internal.UsernamePasswordCredentials;
+
 import br.com.vivabem.dao.IUsuarioDAO;
 import br.com.vivabem.entities.Usuario;
 import br.com.vivabem.util.LoginUtil;
@@ -16,18 +20,26 @@ import br.com.vivabem.util.LoginUtil;
 @RequestScoped
 public class LoginBean {
 
+	private static final long serialVersionUID = 1L;
+	
 	@Inject
 	IUsuarioDAO usuarioDao;
 
 	@Inject 
 	FacesContext context;
 	
+	@Inject
+	Identity identity;
+	
+	@Inject
+	LoginCredential credential;
+	
 	@Inject @MeuUsuarioLogado
 	private Instance<Usuario> usuario;
 	
 	private String login;
 	private String senha;
-	private boolean logado;
+	private boolean logado;																																									
 	
 	public LoginBean() {
 	}
@@ -56,7 +68,10 @@ public class LoginBean {
 		this.usuario = usuario;
 	}
 	
-	public void loginFromJSF() {
+	public void loginFromJSF(String username, String password) {
+		//this.credential.setCredential(new UsernamePasswordCredentials(username, password));
+		
+		
 		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
 		try {
 			request.login(this.login, LoginUtil.getHashMD5(this.senha));
