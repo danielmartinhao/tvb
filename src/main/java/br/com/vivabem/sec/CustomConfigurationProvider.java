@@ -6,7 +6,7 @@ import org.picketbox.http.config.ConfigurationBuilderProvider;
 import org.picketbox.http.config.HTTPConfigurationBuilder;
 import org.picketbox.http.resource.ProtectedResourceConstraint;
 
-public class CustomConfigurationPovider implements ConfigurationBuilderProvider {
+public class CustomConfigurationProvider implements ConfigurationBuilderProvider {
 
 	@Override
 	public HTTPConfigurationBuilder getBuilder(ServletContext servletcontext) {
@@ -17,7 +17,7 @@ public class CustomConfigurationPovider implements ConfigurationBuilderProvider 
         // protected resources configuration
         configurationBuilder.protectedResource()
                 // unprotected resource. Usually this will be your application's static resources like CSS, JS, etc.
-                .resource("/resources/*", ProtectedResourceConstraint.NOT_PROTECTED)
+                .resource("/resources/*", ProtectedResourceConstraint.AUTHENTICATION)
  
                 // the login page is marked as not protected.
                 .resource("/login.xhtml", ProtectedResourceConstraint.NOT_PROTECTED)
@@ -32,7 +32,7 @@ public class CustomConfigurationPovider implements ConfigurationBuilderProvider 
                 .resource("/error.xhtml", ProtectedResourceConstraint.NOT_PROTECTED)
  
                 // protected all resources. They will be available only for users with a role named 'guest'.
-                .resource("/*", "sistema", "administracao", "atendente", "vendedor");
+                .resource("/sistema/*", "sistema", "administracao", "atendente", "vendedor");
  
         return configurationBuilder;
 	}

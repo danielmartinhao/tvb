@@ -1,4 +1,4 @@
-package br.com.vivabem.tests;
+package br.com.vivabem;
 
 public class Calculadora {
 	public Integer somar(Integer a, Integer b){

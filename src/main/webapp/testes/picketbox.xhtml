@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<!-- <ui:composition template="/resources/templates/principal.xhtml"> -->
+<ui:composition template="/resources/templates/secundario.xhtml">
+	<ui:define name="content">
+		<div id="login-box" class="alpha prefix_3 grid_6 suffix_3 omega">
+			<h:form>
+				<p:growl id="growl" for="generalMessages" showDetail="true" sticky="true" />
+				<p:commandButton id="btnTestarPicketbox" value="#{msg['testes.btnTestarPicketBox']}"
+					icon="ui-icon-check" style="margin:0 5px"
+					actionListener="#{picketBoxTest.testarPicketBox}"
+					update="growl failed " />
+				<div class="alpha grid_6 omega">
+					<p:messages id="failed" severity="warn, error, fatal"
+						closable="true"></p:messages>
+				</div>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
+
+</html>

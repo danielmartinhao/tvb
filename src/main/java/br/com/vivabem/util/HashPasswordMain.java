@@ -1,4 +1,4 @@
-package br.com.vivabem;
+package br.com.vivabem.util;
 
 import java.security.MessageDigest;
 

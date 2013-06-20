@@ -1,8 +1,8 @@
-package br.com.vivabem;
+package br.com.vivabem.util;
 
 import java.security.MessageDigest;
 
-public class HashPassword {
+public class LoginUtil {
 	public static String getHashMD5(String password){
 		MessageDigest md = null;
 		try {

@@ -8,9 +8,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
-import br.com.vivabem.HashPassword;
 import br.com.vivabem.dao.IUsuarioDAO;
 import br.com.vivabem.entities.Usuario;
+import br.com.vivabem.util.LoginUtil;
 
 @Named
 @RequestScoped
@@ -59,12 +59,15 @@ public class LoginBean {
 	public void loginFromJSF() {
 		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
 		try {
-			request.login(this.login, HashPassword.getHashMD5(this.senha));
+			request.login(this.login, LoginUtil.getHashMD5(this.senha));
+			System.out.println("to aqui...");
 			this.logado = true;
-			context.addMessage("generalMessages", new FacesMessage("Login executado!!!", "Bem-vindo " + getUsuario().getUsunome()));
+//			context.addMessage("generalMessages", new FacesMessage("Login executado!!!", "Bem-vindo " + getUsuario().getUsunome()));
 		} catch (Exception e) {
-			context.addMessage("falied", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha de login", "Usuário Inválido."));
+			System.out.println(e.getMessage());
 			System.out.println(e.getStackTrace());
+			e.printStackTrace();
+			context.addMessage("falied", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha de login", "Usuário Inválido."));
 		}
 	}
 	
