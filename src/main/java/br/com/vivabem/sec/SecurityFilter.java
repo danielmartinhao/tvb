@@ -25,19 +25,19 @@ public class SecurityFilter implements Filter {
 	}
 
 	@Override
-	public void doFilter(ServletRequest req, ServletResponse resonse,
+	public void doFilter(ServletRequest req, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		
 		if (!this.identity.isLoggedIn()) {
 			HttpServletRequest request = (HttpServletRequest) req;
 			
 			if (request.getRequestURI().startsWith(request.getContextPath() + "/faces/sistema")) {
-				req.getServletContext().getRequestDispatcher("/faces/login.xhtml").forward(req, resonse);
+				req.getServletContext().getRequestDispatcher("/faces/login.xhtml").forward(req, response);
 			} else {
-				chain.doFilter(req, resonse);
+				chain.doFilter(req, response);
 			}
 		} else {
-			chain.doFilter(req, resonse);
+			chain.doFilter(req, response);
 		}
 	}
 

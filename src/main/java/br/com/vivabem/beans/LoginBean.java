@@ -1,5 +1,8 @@
 package br.com.vivabem.beans;
 
+import java.io.Serializable;
+
+import javax.annotation.Resource;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Instance;
 import javax.faces.application.FacesMessage;
@@ -8,9 +11,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
+import org.picketbox.core.UserCredential;
 import org.picketlink.Identity;
+import org.picketlink.credential.internal.DefaultLoginCredentials;
 import org.picketlink.extensions.core.pbox.LoginCredential;
-import org.picketlink.idm.credential.internal.UsernamePasswordCredentials;
 
 import br.com.vivabem.dao.IUsuarioDAO;
 import br.com.vivabem.entities.Usuario;
@@ -18,7 +22,7 @@ import br.com.vivabem.util.LoginUtil;
 
 @Named
 @RequestScoped
-public class LoginBean {
+public class LoginBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -28,11 +32,14 @@ public class LoginBean {
 	@Inject 
 	FacesContext context;
 	
-	@Inject
-	Identity identity;
-	
-	@Inject
-	LoginCredential credential;
+//	@Resource
+//	Identity identity;
+//	
+//	@Inject
+//	LoginCredential credential;
+//	
+//	@Inject
+//	DefaultLoginCredentials loginCredentials;
 	
 	@Inject @MeuUsuarioLogado
 	private Instance<Usuario> usuario;
@@ -74,7 +81,12 @@ public class LoginBean {
 		
 		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
 		try {
-			request.login(this.login, LoginUtil.getHashMD5(this.senha));
+//			if (!this.identity.isLoggedIn()) {
+//				this.loginCredentials.setUserId(login);
+//				this.loginCredentials.setPassword(senha);
+//				this.identity.login();
+//			}
+			//request.login(this.login, LoginUtil.getHashMD5(this.senha));
 			System.out.println("to aqui...");
 			this.logado = true;
 //			context.addMessage("generalMessages", new FacesMessage("Login executado!!!", "Bem-vindo " + getUsuario().getUsunome()));
