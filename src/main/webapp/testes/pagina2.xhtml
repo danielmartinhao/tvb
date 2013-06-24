@@ -11,11 +11,7 @@
 		<div id="login-box" class="alpha prefix_3 grid_6 suffix_3 omega">
 			<h:form>
 				<p:growl id="growl" for="generalMessages" showDetail="true" sticky="true" />
-				<p:commandButton id="btnTestarPicketbox" value="#{msg['testes.btnTestarPicketBox']}"
-					icon="ui-icon-check" style="margin:0 5px"
-					actionListener="#{picketBoxTest.testarPicketBox}"
-					action="/testes/pagina2.xhtml"
-					update="growl failed " />
+				<h:outputText value="#{beanDeTeste.usuarioLogado}" />
 				<div class="alpha grid_6 omega">
 					<p:messages id="failed" severity="warn, error, fatal"
 						closable="true"></p:messages>

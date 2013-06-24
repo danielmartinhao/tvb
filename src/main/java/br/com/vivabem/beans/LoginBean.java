@@ -2,7 +2,6 @@ package br.com.vivabem.beans;
 
 import java.io.Serializable;
 
-import javax.annotation.Resource;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Instance;
 import javax.faces.application.FacesMessage;
@@ -11,14 +10,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
-import org.picketbox.core.UserCredential;
-import org.picketlink.Identity;
-import org.picketlink.credential.internal.DefaultLoginCredentials;
-import org.picketlink.extensions.core.pbox.LoginCredential;
-
 import br.com.vivabem.dao.IUsuarioDAO;
 import br.com.vivabem.entities.Usuario;
-import br.com.vivabem.util.LoginUtil;
 
 @Named
 @RequestScoped
