@@ -5,6 +5,7 @@ import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
 import br.com.vivabem.entities.Usuario;
+import br.com.vivabem.resources.MeuUsuarioLogado;
 
 
 @ManagedBean

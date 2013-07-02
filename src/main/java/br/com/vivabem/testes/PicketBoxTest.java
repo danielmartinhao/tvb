@@ -7,7 +7,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.jboss.weld.context.http.Http;
 import org.picketbox.core.PicketBoxManager;
 import org.picketbox.core.UserContext;
 import org.picketbox.core.UserCredential;
@@ -17,51 +16,28 @@ import org.picketbox.core.ctx.SecurityContext;
 import org.picketbox.core.ctx.SecurityContextPropagation;
 import org.picketbox.core.exceptions.AuthenticationException;
 import org.picketbox.core.exceptions.ProcessingException;
-import org.picketbox.core.identity.jpa.EntityManagerLookupStrategy;
 import org.picketbox.http.HTTPUserContext;
 import org.picketbox.http.PicketBoxHTTPManager;
 import org.picketbox.http.config.HTTPConfigurationBuilder;
 import org.picketbox.http.config.PicketBoxHTTPConfiguration;
-import org.picketlink.idm.IdentityManager;
-import org.picketlink.idm.credential.internal.Password;
-import org.picketlink.idm.model.Group;
-import org.picketlink.idm.model.Role;
-import org.picketlink.idm.model.SimpleGroup;
-import org.picketlink.idm.model.SimpleRole;
-import org.picketlink.idm.model.SimpleUser;
 
+import br.com.vivabem.resources.SecurityContextDeUsuarioLogado;
 import br.com.vivabem.sec.CustomConfigurationProvider;
 
 @Named
 public class PicketBoxTest {
-//	@Inject
-//    private EntityManager em;
+
+	@Inject @SecurityContextDeUsuarioLogado
+	private SecurityContext securityContext;
 	
-//	@Inject
-//	private UserTransaction ut;
-//	
 	@Inject
 	private FacesContext context;
 	
 	public void testarPicketBox() throws AuthenticationException {
-//		EntityManagerPropagationContext.set(em);
-		
 		ServletContext servletContext = (ServletContext) context.getExternalContext().getContext(); 
-//		ConfigurationBuilder builder = new ConfigurationBuilder();
 		HTTPConfigurationBuilder builder = (new CustomConfigurationProvider()).getBuilder(servletContext);
-//		HTTPConfigurationBuilder builder = new HTTPConfigurationBuilder();
-		 
-//		builder.identityManager().jpaStore();
-		
 		PicketBoxHTTPConfiguration configuration = (PicketBoxHTTPConfiguration) builder.build();
-
-//		PicketBoxConfiguration configuration = builder.build();
-		
-		// instantiates a PicketBoxManager with the default configurations
-//		PicketBoxManager picketBoxManager = new DefaultPicketBoxManager(configuration);
 		PicketBoxManager picketBoxManager = new PicketBoxHTTPManager(configuration);
-		
-		
 		picketBoxManager.start();
 		
 		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
@@ -76,7 +52,7 @@ public class PicketBoxTest {
 		
 		if (authenticatedContext.isAuthenticated()) {
 			System.out.println(authenticatedContext.getPrincipal().getName() + " logado!!!!");
-			SecurityContext securityContext = new PicketBoxSecurityContext(authenticatedContext);
+			securityContext = new PicketBoxSecurityContext(authenticatedContext);
 			try {
 				SecurityContextPropagation.setContext(securityContext);
 			} catch (ProcessingException e) {

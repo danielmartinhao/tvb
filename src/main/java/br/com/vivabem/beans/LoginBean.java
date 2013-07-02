@@ -8,10 +8,28 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.picketbox.core.PicketBoxManager;
+import org.picketbox.core.UserContext;
+import org.picketbox.core.UserCredential;
+import org.picketbox.core.authentication.credential.UsernamePasswordCredential;
+import org.picketbox.core.ctx.PicketBoxSecurityContext;
+import org.picketbox.core.ctx.SecurityContext;
+import org.picketbox.core.ctx.SecurityContextPropagation;
+import org.picketbox.core.exceptions.AuthenticationException;
+import org.picketbox.http.HTTPUserContext;
+import org.picketbox.http.PicketBoxHTTPManager;
+import org.picketbox.http.config.HTTPConfigurationBuilder;
+import org.picketbox.http.config.PicketBoxHTTPConfiguration;
 
 import br.com.vivabem.dao.IUsuarioDAO;
 import br.com.vivabem.entities.Usuario;
+import br.com.vivabem.resources.MeuUsuarioLogado;
+import br.com.vivabem.resources.SecurityContextDeUsuarioLogado;
+import br.com.vivabem.sec.CustomConfigurationProvider;
 
 @Named
 @RequestScoped
@@ -25,17 +43,11 @@ public class LoginBean implements Serializable {
 	@Inject 
 	FacesContext context;
 	
-//	@Resource
-//	Identity identity;
-//	
-//	@Inject
-//	LoginCredential credential;
-//	
-//	@Inject
-//	DefaultLoginCredentials loginCredentials;
-	
 	@Inject @MeuUsuarioLogado
 	private Instance<Usuario> usuario;
+	
+	@Inject @SecurityContextDeUsuarioLogado
+	private Instance<SecurityContext> secContext;
 	
 	private String login;
 	private String senha;
@@ -68,26 +80,44 @@ public class LoginBean implements Serializable {
 		this.usuario = usuario;
 	}
 	
-	public void loginFromJSF(String username, String password) {
+	public void loginFromJSF() {
 		//this.credential.setCredential(new UsernamePasswordCredentials(username, password));
-		
-		
+//		try {
+////			if (!this.identity.isLoggedIn()) {
+////				this.loginCredentials.setUserId(login);
+////				this.loginCredentials.setPassword(senha);
+////				this.identity.login();
+////			}
+//			//request.login(this.login, LoginUtil.getHashMD5(this.senha));
+//			
+//			System.out.println("to aqui...");
+//			this.logado = true;
+////			context.addMessage("generalMessages", new FacesMessage("Login executado!!!", "Bem-vindo " + getUsuario().getUsunome()));
+//		} catch (Exception e) {
+//			System.out.println(e.getMessage());
+//			System.out.println(e.getStackTrace());
+//			e.printStackTrace();
+//			context.addMessage("falied", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha de login", "Usuário Inválido."));
+//		}
+		ServletContext servletContext = (ServletContext) context.getExternalContext().getContext(); 
+		HTTPConfigurationBuilder builder = (new CustomConfigurationProvider()).getBuilder(servletContext);
+		PicketBoxHTTPConfiguration configuration = (PicketBoxHTTPConfiguration) builder.build();
+		PicketBoxManager picketBoxManager = new PicketBoxHTTPManager(configuration);
+		picketBoxManager.start();
 		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+		HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
+		UserCredential credential = new UsernamePasswordCredential("admin","admin");
+		HTTPUserContext authenticatingContext = new HTTPUserContext(request, response, credential);
 		try {
-//			if (!this.identity.isLoggedIn()) {
-//				this.loginCredentials.setUserId(login);
-//				this.loginCredentials.setPassword(senha);
-//				this.identity.login();
-//			}
-			//request.login(this.login, LoginUtil.getHashMD5(this.senha));
-			System.out.println("to aqui...");
-			this.logado = true;
-//			context.addMessage("generalMessages", new FacesMessage("Login executado!!!", "Bem-vindo " + getUsuario().getUsunome()));
+			UserContext authenticatedContext = picketBoxManager.authenticate(authenticatingContext);
+			SecurityContext securityContext = secContext.get();
+			securityContext = new PicketBoxSecurityContext(authenticatedContext);
+			SecurityContextPropagation.setContext(securityContext);
+		} catch (AuthenticationException au ) {
+			context.addMessage("falied", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha de login", "Usuário Inválido."));
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			System.out.println(e.getStackTrace());
 			e.printStackTrace();
-			context.addMessage("falied", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha de login", "Usuário Inválido."));
 		}
 	}
 	

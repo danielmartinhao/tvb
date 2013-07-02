@@ -2,13 +2,13 @@ package br.com.vivabem.testes;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
-import javax.xml.registry.infomodel.User;
 
 import org.picketbox.core.UserContext;
 import org.picketbox.core.ctx.SecurityContext;
-import org.picketbox.core.ctx.SecurityContextPropagation;
-import org.picketbox.core.exceptions.ProcessingException;
+
+import br.com.vivabem.resources.SecurityContextDeUsuarioLogado;
 
 @Named
 @RequestScoped
@@ -16,6 +16,9 @@ public class BeanDeTeste {
 	
 	private String usuarioLogado;
 
+	@Inject @SecurityContextDeUsuarioLogado
+	private SecurityContext securityContext;
+	
 	public BeanDeTeste() {
 		
 	}
@@ -23,14 +26,15 @@ public class BeanDeTeste {
 	@PostConstruct
 	public void intial() {
 		UserContext userContext = null;
-		try {
-			SecurityContext securityContext = SecurityContextPropagation.getContext();
-			userContext = securityContext.getUserContext();
-			this.usuarioLogado = userContext.getPrincipal().getName();
-		} catch (ProcessingException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-		}
+		userContext = securityContext.getUserContext();
+		this.usuarioLogado = userContext.getPrincipal().getName();
+//		try {
+////			SecurityContext securityContext = SecurityContextPropagation.getContext();
+//		} catch (ProcessingException e) {
+//			System.out.println(e.getMessage());
+//			e.printStackTrace();
+//		}
+		this.usuarioLogado = userContext.getPrincipal().getName();
 	}
 
 	public String getUsuarioLogado() {

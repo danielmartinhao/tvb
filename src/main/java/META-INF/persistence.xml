@@ -18,8 +18,11 @@
         <class>org.picketlink.idm.jpa.schema.RelationshipObjectAttribute</class>
         <class>org.picketlink.idm.jpa.schema.RelationshipIdentityObject</class>
         <class>org.picketlink.idm.jpa.schema.PartitionObject</class>
+
+ 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
         
 		<properties>
+            <property name="jboss.entity.manager.factory.jndi.name" value="java:jboss/TestingIDMEMF"/> <!-- Exposes the EMF via JNDI -->
 <!-- 			<property name="hibernate.connection.username" value="postgres" /> -->
 <!-- 			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/vivabem" /> -->
 <!-- 			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver" /> -->
@@ -27,6 +30,19 @@
 			<!-- <property name="hibernate.hbm2ddl.auto" value="create-drop" /> -->
 <!-- 			<property name="hibernate.hbm2ddl.auto" value="update" /> -->
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL82Dialect" />
+            <property name="hibernate.format_sql" value="true" />
+            <property name="hibernate.listeners.envers.autoRegister" value="false" />
+            <property name="javax.persistence.validation.mode" value="none" />
 		</properties>
+		
+
+<!--         <properties> -->
+<!--             <property name="jboss.entity.manager.factory.jndi.name" value="java:jboss/TestingIDMEMF"/> Exposes the EMF via JNDI -->
+<!--             <property name="hibernate.hbm2ddl.auto" value="update" /> -->
+<!--             <property name="hibernate.show_sql" value="false" /> -->
+<!--             <property name="hibernate.format_sql" value="true" /> -->
+<!--             <property name="hibernate.listeners.envers.autoRegister" value="false" /> -->
+<!--             <property name="javax.persistence.validation.mode" value="none" /> -->
+<!--         </properties> -->
 	</persistence-unit>
 </persistence>

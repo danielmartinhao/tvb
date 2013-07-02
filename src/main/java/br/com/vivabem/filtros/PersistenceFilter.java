@@ -1,4 +1,4 @@
-package br.com.vivabem.resources;
+package br.com.vivabem.filtros;
 
 import java.io.IOException;
 
